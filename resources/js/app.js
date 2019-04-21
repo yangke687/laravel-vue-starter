@@ -41,6 +41,10 @@ window.Vue.use(VueRouter);
     path: '/profile',
     component: require('./components/ExampleComponent.vue')
   },
+  {
+    path: '/users',
+    component: require('./components/Users.vue')
+  }
  ];
 
  const router = new VueRouter({
