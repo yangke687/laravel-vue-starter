@@ -60,6 +60,8 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
+
+          <form @submit.prevent="createUser">
           <div class="modal-body">
             <!-- ueer name -->
             <div class="form-group">
@@ -87,7 +89,7 @@
 
             <!-- user type -->
             <div class="form-group">
-              <select name="type" v-model="type" class="form-control" :class="{ 'is-valid': form.errors.has('type') }">
+              <select name="type" v-model="form.type" class="form-control" :class="{ 'is-valid': form.errors.has('type') }">
                 <option value="">Select User Role</option>
                 <option value="admin">Admin</option>
                 <option value="user">User</option>
@@ -105,10 +107,14 @@
             </div>
 
           </div>
+
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Create</button>
+            <button type="submit" class="btn btn-primary">Create</button>
           </div>
+
+          </form>
+          
         </div>
       </div>
     </div>
@@ -119,13 +125,19 @@
   export default {
     data() {
       return {
-        form: new Form(),
-        name: '',
-        email: '',
-        password: '',
-        type: '',
-        bio: '',
-
+        form: new Form({
+          name: '',
+          email: '',
+          password: '',
+          type: '',
+          bio: '',
+        }),
+      }
+    },
+    methods: {
+      createUser() {
+        console.log('create user')
+        this.form.post('/api/user')
       }
     },
     mounted() {
