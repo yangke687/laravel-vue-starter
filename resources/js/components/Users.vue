@@ -61,7 +61,49 @@
             </button>
           </div>
           <div class="modal-body">
-            ...
+            <!-- ueer name -->
+            <div class="form-group">
+              <input v-model="form.name" type="text" name="name"
+                placeholder="User Name"
+                class="form-control" :class="{ 'is-valid': form.errors.has('name') }" />
+              <has-error :form="form" field="name" />
+            </div>
+
+            <!-- user email -->
+            <div class="form-group">
+              <input v-model="form.email" type="email" name="email"
+                placeholder="User Email Addr"
+                class="form-control" :class="{ 'is-valid': form.errors.has('email') }" />
+              <has-error :form="form" field="email" />
+            </div>
+            
+            <!-- user bio -->
+            <div class="form-group">
+              <input v-model="form.bio" type="text" name="bio"
+                placeholder="User Bio"
+                class="form-control" :class="{ 'is-valid': form.errors.has('bio') }" />
+              <has-error :form="form" field="bio" />
+            </div>
+
+            <!-- user type -->
+            <div class="form-group">
+              <select name="type" v-model="type" class="form-control" :class="{ 'is-valid': form.errors.has('type') }">
+                <option value="">Select User Role</option>
+                <option value="admin">Admin</option>
+                <option value="user">User</option>
+                <option value="author">Author</option>
+              </select>
+              <has-error :form="form" field="type" />
+            </div>
+
+            <!-- User Password -->
+            <div class="form-group">
+              <input v-model="form.password" type="password" name="password"
+                placeholder="User Password"
+                class="form-control" :class="{ 'is-valid': form.errors.has('password') }" />
+              <has-error :form="form" field="password" />
+            </div>
+
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -75,6 +117,17 @@
 
 <script>
   export default {
+    data() {
+      return {
+        form: new Form(),
+        name: '',
+        email: '',
+        password: '',
+        type: '',
+        bio: '',
+
+      }
+    },
     mounted() {
       console.log('load users')
     }
